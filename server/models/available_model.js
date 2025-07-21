@@ -8,6 +8,11 @@ export async function fetchAllAvailableDays() {
     return arr;
 }
 
+export async function addAvailbility(date, start_time, end_time) {
+    let newSlot = await conn('availability').insert({date, start_time, end_time}, ['*']);
+    return newSlot
+}
+
 
 export async function updateSlot(id) {
     // updates the slot's is_booked to true, returns the updated entry
