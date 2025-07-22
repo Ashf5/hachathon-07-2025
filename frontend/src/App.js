@@ -1,10 +1,11 @@
 
 import './App.css';
 import MainNavbar from './components/MainNavbar';
-import MainContentCard from './components/MainContentCard';
+import MainPage from './MainPage.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/MainNavbar.css'
 import './components/MainContentCard.css'
+import {Routes, Route} from 'react-router-dom';
 
 import 'react-calendar/dist/Calendar.css'
 
@@ -14,8 +15,12 @@ function App() {
   return (
     <div className="App">
       <MainNavbar />
-      <MainContentCard />
-      <BookPage />
+      <Routes>
+        <Route path='/' element={<MainPage />} />
+        <Route path='/book' element={<BookPage />} />
+      </Routes>
+      
+      
     </div>
   );
 }
