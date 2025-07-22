@@ -1,0 +1,28 @@
+.cardContainer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../public/mainBackground.png');
+    width: 80%;
+    aspect-ratio: 2/1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: white;
+}
+
+.card button {
+    background-color: #0c7ff2;
+    color: white;
+    height: 2.3rem;
+    border-radius: 7px;
+    border: none;
+}

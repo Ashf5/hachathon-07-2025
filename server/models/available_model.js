@@ -8,8 +8,16 @@ export async function fetchAllAvailableDays() {
     return arr;
 }
 
+
+export async function fetchDaySlots(date) {
+    let data = await conn('availability').select('start_time').where({is_booked: false, date: date});
+    let cleaned = data.map(item => item.start_time);
+    return cleaned;
+}
+
 export async function addAvailbility(date, start_time, end_time) {
-    let newSlot = await conn('availability').insert({date, start_time, end_time}, ['*']);
+    let fdate = new Date(date).toISOString().split('T')[0]
+    let newSlot = await conn('availability').insert({date: fdate, start_time, end_time}, ['*']);
     return newSlot
 }
 

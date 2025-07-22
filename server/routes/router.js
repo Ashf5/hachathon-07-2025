@@ -1,7 +1,7 @@
 
 import { Router } from "express";
 import { createBooking, getAllBookings, getBookingsByEmail, updateBookingStatus } from "../controllers/booking_controller.js";
-import { getAvailableDays, addTimeSlot } from "../controllers/slot_controllers.js";
+import { getAvailableDays, addTimeSlot, daySlots } from "../controllers/slot_controllers.js";
 
 export const router = Router();
 
@@ -14,3 +14,5 @@ router.put('/bookings/status/:id', updateBookingStatus);
 
 router.get('/available', getAvailableDays);
 router.post('/available', addTimeSlot)
+
+router.post('/available-slots', daySlots);

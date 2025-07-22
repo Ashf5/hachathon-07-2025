@@ -1,5 +1,5 @@
 import validator from 'validator';
-import { addAvailbility, fetchAllAvailableDays, updateSlot } from "../models/available_model.js";
+import { addAvailbility, fetchAllAvailableDays, fetchDaySlots, updateSlot } from "../models/available_model.js";
 
 export async function getAvailableDays(req, res) {
     try {
@@ -27,5 +27,18 @@ export async function addTimeSlot(req, res) {
         console.log(e);
         res.status(500).json({msg: 'Error creating new slot'});
     }
+}
+
+export async function daySlots(req, res) {
+    console.log(req.body)
+    let date = new Date(req.body.date).toISOString();
+    try {
+        let data = await fetchDaySlots(date);
+        res.status(200).json(data);
+    }catch(e) {
+        console.log(e);
+        res.status(500).json({msg: 'Error fetching slots'})
+    }
+    
 }
 

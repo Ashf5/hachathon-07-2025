@@ -5,8 +5,9 @@ import { createBookingData, fetchAllBookings, fetchBooking, updateStatusDb } fro
 export async function createBooking(req, res) {
     // some basic validation using validator library
     let {name, email, phone, address, date, time} = req.body;
+    
     try {
-        if(!name || !validator.isEmail(email) || !validator.isMobilePhone(phone, 'any', {strictMode: false}) || !address || !validator.isDate(date) || !validator.isTime(time)) throw new Error('Create booking model function received missing data');
+        if(!name || !validator.isEmail(email) || !validator.isMobilePhone(phone, 'any', {strictMode: false}) || !address || !validator.isISO8601(date) || !validator.isTime(time, {mode:'withSeconds'})) throw new Error('Create booking model function received missing data');
     }catch (e) {
         console.log(e);
         res.status(400).json({msg: 'Improper data received.'});
