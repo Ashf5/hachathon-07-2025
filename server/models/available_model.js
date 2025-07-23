@@ -9,8 +9,14 @@ export async function fetchAllAvailableDays() {
 }
 
 
-export async function fetchDaySlots(date) {
-    let data = await conn('availability').select('start_time').where({is_booked: false, date: date});
+// function returns the slots of a day, takes an optional booked paramater, if true it also returns the booked slots
+export async function fetchDaySlots(date, booked) {
+    let data;
+    if (booked) {
+        data = await conn('availability').select('start_time').where({date: date});
+    }else {
+        data = await conn('availability').select('start_time').where({is_booked: false, date: date});
+    }
     let cleaned = data.map(item => item.start_time);
     return cleaned;
 }
