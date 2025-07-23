@@ -3,7 +3,7 @@ import conn from '../config/config.js';
 
 export async function fetchAllAvailableDays() {
     // Select all days with open slots. Only returns the date objects
-    let data = await conn('availability').distinct('date').where('is_booked', false);
+    let data = await conn('availability').distinct(conn.raw('date::text as date')).where('is_booked', false);
     let arr = data.map(date => date.date);
     return arr;
 }

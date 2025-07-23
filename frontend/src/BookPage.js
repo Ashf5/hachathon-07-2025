@@ -8,6 +8,7 @@ function BookPage() {
 
     // Use Effect to submit the data
     useEffect(() => {
+        if (Object.keys(formData).length === 0) return
         const fetchData = async () => {
             let response = await fetch('http://localhost:5000/api/bookings', {
                 method: 'POST', 

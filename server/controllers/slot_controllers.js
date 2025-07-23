@@ -30,7 +30,6 @@ export async function addTimeSlot(req, res) {
 }
 
 export async function daySlots(req, res) {
-    console.log(req.body)
     let date = new Date(req.body.date).toISOString();
     try {
         let data = await fetchDaySlots(date, req.body.is_booked);

@@ -32,13 +32,14 @@ function CreateSlot() {
     // This function creates new slot
     const makeSlot = (time) => {
         const mSlot = async () => {
+            const dateISO = selectedDay instanceof Date ? selectedDay.toISOString().split('T')[0]: selectedDay;
             let data = await fetch('http://localhost:5000/api/available', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 }, 
                 body: JSON.stringify({
-                    date: selectedDay,
+                    date: dateISO,
                     start_time: time,
                     end_time: slotEnd
                 })
