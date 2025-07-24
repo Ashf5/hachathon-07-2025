@@ -30,7 +30,7 @@ function BookPage() {
     return (
         <div>
             {!message && <BookingForm handler={setFormData}/>}
-            {message && <h2>{message}</h2>}
+            {message && <div className="confirmationMessage"><h2>{message}</h2><h3>Name: {formData.name}</h3><h3>Email: {formData.email}</h3><h3>Number: {formData.phone}</h3><h3>Address: {formData.address}</h3><h3>Date: {String(formData.date).split('00:')[0]}</h3><h3>Time: {formData.time}</h3></div>}
             
         </div>
     )

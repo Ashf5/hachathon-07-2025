@@ -36,3 +36,62 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* added css */
+
+.bookingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.bookingContainer form {
+  margin-top: 20px;
+}
+
+li {
+  list-style-type: none;
+}
+
+input {
+   background-color: #f0f2f5;
+   border: none;
+   border-radius: 7px;
+   margin: 7px;
+}
+
+form button, .slotTimes button, .book {
+    background-color: #0c7ff2;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+input[type='submit'] {
+    background-color: #0c7ff2;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+.confirmationMessage {
+  width: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+  background-color: #f5f5f5;
+}
+
+.dashboardParent {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+}
+
+.slotCalendar {
+  display: flex;
+  justify-content: center;
+}

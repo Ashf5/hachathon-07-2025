@@ -28,7 +28,7 @@ function BookingForm(props) {
     }
 
     return (
-        <div>
+        <div className="bookingContainer">
             <BookingCalendar handler ={handleCalendar}/>
             <form>
                 <label for='name'>Name</label>

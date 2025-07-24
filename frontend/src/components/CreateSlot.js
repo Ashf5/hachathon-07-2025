@@ -58,7 +58,7 @@ function CreateSlot() {
 
     return (
         <div>
-            <div>
+            <div className="slotCalendar">
                 <Calendar 
                 onChange={e => updateHour(e)}
                 minDetail="month"
@@ -67,9 +67,10 @@ function CreateSlot() {
             />
             </div>
             <div>
-                <h2>Your created slots:</h2>
+                {selectedDay && <h2>Your created slots:</h2>}
                 <ul>
                     {slotsCreated.map(slot => <li>{slot}</li>)}
+                    {slotsCreated.length === 0 && selectedDay && <li>No slots for today</li>}
                 </ul>
             </div>
             {selectedDay && <SlotForm handler={makeSlot}/>}
