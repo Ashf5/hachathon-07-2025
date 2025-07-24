@@ -40,7 +40,8 @@ function BookingCalendar(props) {
                 onChange={e => updateCalendar(e)}
                 minDetail="month"
                 maxDetail="month"
-                tileDisabled={({date, view}) => view === 'month'? !isAvailable(date): undefined} 
+                tileDisabled={({date, view}) => view === 'month'? !isAvailable(date): undefined}
+                locale='IL'
             />
 
             {selectedDay && !selectedSlot &&

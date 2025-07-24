@@ -63,6 +63,7 @@ function CreateSlot() {
                 onChange={e => updateHour(e)}
                 minDetail="month"
                 maxDetail="month"
+                locale='IL'
             />
             </div>
             <div>
