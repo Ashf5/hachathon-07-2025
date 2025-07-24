@@ -6,7 +6,10 @@ function BookingCalendar(props) {
     let [availableDays, setAvailableDays] = useState([]);
     let [selectedDay, setSelectedDay] = useState(null);
     let [availableSlots, setAvailableSlots] = useState([]);
-    let [selectedSlot, setSlot] = useState(null)
+    let [selectedSlot, setSlot] = useState(null);
+
+    // state for hiding the confirm button after being clicked
+    let [buttonHidden, setButton] = useState(false);
 
     useEffect(() => {
         fetch('http://localhost:5000/api/available')
@@ -45,19 +48,21 @@ function BookingCalendar(props) {
             />
 
             {selectedDay && !selectedSlot &&
-                <div> 
+                <div className="slotTimes"> 
                     <h2>Select a time</h2>
-                    <ul>
                         {availableSlots.map((slot, i) => <button key={i} onClick={(e) => setSlot(e.target.value)} value={slot}>{slot}</button>)}
-                    </ul>
-                    
+
                 </div>
             }
 
             {
-                selectedSlot && <div>
+                selectedSlot && <div className="slotTimes">
                     <h3>Your time slot: {selectedSlot}</h3>
-                    <button onClick={e => props.handler(selectedDay, selectedSlot)}>Confirm</button>
+                    {!buttonHidden && <button onClick={e => {
+                        props.handler(selectedDay, selectedSlot);
+                        setButton(true);
+                    }} >Confirm</button>}
+                    
                 </div>
             }
         </div>
