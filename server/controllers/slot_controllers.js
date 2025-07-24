@@ -15,7 +15,7 @@ export async function getAvailableDays(req, res) {
 // TODO add auth to this function 
 export async function addTimeSlot(req, res) {
     let {date, start_time, end_time} = req.body;
-    if (!validator.isDate(date) || !validator.isTime(start_time) || !validator.isTime(end_time)) {
+    if (!validator.isISO8601(date) || !validator.isTime(start_time) || !validator.isTime(end_time)) {
         res.status(400).json('invalid data received in body');
         return;
     }
@@ -30,10 +30,9 @@ export async function addTimeSlot(req, res) {
 }
 
 export async function daySlots(req, res) {
-    console.log(req.body)
     let date = new Date(req.body.date).toISOString();
     try {
-        let data = await fetchDaySlots(date);
+        let data = await fetchDaySlots(date, req.body.is_booked);
         res.status(200).json(data);
     }catch(e) {
         console.log(e);

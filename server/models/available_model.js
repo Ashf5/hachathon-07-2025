@@ -3,14 +3,20 @@ import conn from '../config/config.js';
 
 export async function fetchAllAvailableDays() {
     // Select all days with open slots. Only returns the date objects
-    let data = await conn('availability').distinct('date').where('is_booked', false);
+    let data = await conn('availability').distinct(conn.raw('date::text as date')).where('is_booked', false);
     let arr = data.map(date => date.date);
     return arr;
 }
 
 
-export async function fetchDaySlots(date) {
-    let data = await conn('availability').select('start_time').where({is_booked: false, date: date});
+// function returns the slots of a day, takes an optional booked paramater, if true it also returns the booked slots
+export async function fetchDaySlots(date, booked) {
+    let data;
+    if (booked) {
+        data = await conn('availability').select('start_time').where({date: date});
+    }else {
+        data = await conn('availability').select('start_time').where({is_booked: false, date: date});
+    }
     let cleaned = data.map(item => item.start_time);
     return cleaned;
 }

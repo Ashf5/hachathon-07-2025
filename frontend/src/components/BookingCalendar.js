@@ -14,17 +14,21 @@ function BookingCalendar(props) {
             .then(jsonData => setAvailableDays(jsonData));
     }, []);
 
-    const isAvailable = (date) => availableDays.includes(date.toISOString())
+    const isAvailable = (date) => {
+        const dateISO = date.toISOString().split('T')[0];
+        return availableDays.includes(dateISO)
+    }
 
     const updateCalendar = (e) => {
         setSelectedDay(e);
+        const dateISO = e instanceof Date ? e.toISOString().split('T')[0]: e;
         fetch('http://localhost:5000/api/available-slots', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                date: e
+                date: dateISO
             })
         }).then(data => data.json()).then(clean => {setAvailableSlots(clean)})
 
@@ -36,7 +40,8 @@ function BookingCalendar(props) {
                 onChange={e => updateCalendar(e)}
                 minDetail="month"
                 maxDetail="month"
-                tileDisabled={({date, view}) => view === 'month'? !isAvailable(date): undefined} 
+                tileDisabled={({date, view}) => view === 'month'? !isAvailable(date): undefined}
+                locale='IL'
             />
 
             {selectedDay && !selectedSlot &&

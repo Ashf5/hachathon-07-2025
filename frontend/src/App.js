@@ -10,6 +10,7 @@ import {Routes, Route} from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css'
 
 import BookPage from './BookPage';
+import DashboardPage from './DashboardPage.js';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={<MainPage />} />
         <Route path='/book' element={<BookPage />} />
+        <Route path='/admin' element={<DashboardPage />} />
       </Routes>
       
       

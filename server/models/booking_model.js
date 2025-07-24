@@ -40,6 +40,7 @@ export async function fetchBooking(email) {
 }
 
 export async function updateStatusDb(id, status) {
-	let updated = await conn('bookings').update({status: status}).where({id: id}).returning(['*']);
+	// have to use slot_id because it got corrupted with the join statements . TODO fix that join
+	let updated = await conn('bookings').update({status: status}).where({slot: id}).returning(['*']);
 	return updated;
 }
