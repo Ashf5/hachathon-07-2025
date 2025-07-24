@@ -40,11 +40,16 @@ function CompleteTask(props) {
         }
         updateStatus()
     }
-
+//const fdate = new Date(booking.date).toLocaleDateString('en-CA');
     return (
         <div>
             <ul>
-                {bookings.map((booking, i) => <li key={i}>{booking.name} {booking.email} {booking.phone} {booking.address} {booking.date} {booking.start_time} {booking.status} <button onClick={completedHandler} name={i}>Mark Completed</button></li>)}
+                {bookings.map((booking, i) => {
+                    const localDate = new Date(booking.date).toLocaleDateString(); 
+                    return (<li key={i}>{booking.name} {booking.email} {booking.phone} {booking.address} {localDate}  {booking.start_time} {booking.status} <button onClick={completedHandler} name={i}>Mark Completed</button></li>)
+                }
+                
+                )}
             </ul>
             
         </div>

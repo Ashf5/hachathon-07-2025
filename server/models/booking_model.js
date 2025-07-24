@@ -27,7 +27,7 @@ export async function createBookingData(bookingDetails) {
 
 export async function fetchAllBookings() {
 	// returns all bookings
-	let raw = 'SELECT * FROM bookings JOIN users ON bookings.user_id = users.id JOIN availability ON bookings.slot = availability.id';
+	let raw = 'SELECT bookings.*, users.*, availability.date::text as date, availability.start_time, availability.end_time FROM bookings JOIN users ON bookings.user_id = users.id JOIN availability ON bookings.slot = availability.id';
 	let data = await conn.raw(raw);
 	return data;
 }

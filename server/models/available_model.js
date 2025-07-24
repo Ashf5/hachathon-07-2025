@@ -22,8 +22,7 @@ export async function fetchDaySlots(date, booked) {
 }
 
 export async function addAvailbility(date, start_time, end_time) {
-    let fdate = new Date(date).toISOString().split('T')[0]
-    let newSlot = await conn('availability').insert({date: fdate, start_time, end_time}, ['*']);
+    let newSlot = await conn('availability').insert({date: conn.raw('?::date', [date]), start_time, end_time}, ['*']);
     return newSlot
 }
 
